@@ -1,4 +1,5 @@
 import Link from "next/link"
+import "./globals.css"
 
 export default function RootLayout({ children }) {
   return (
@@ -6,7 +7,6 @@ export default function RootLayout({ children }) {
       lang="en"
     >
       <body>
-        <Link href="./TierLists">sdfsdfsdfsf</Link>
         {children}</body>
     </html>
   );
