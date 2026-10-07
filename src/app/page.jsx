@@ -1,6 +1,26 @@
+"use client";
 import Image from "next/image";
 
+import { useState, useRef, useEffect } from "react";
+
 export default function Home() {
+
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const onClick = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
   return (
     <div id="body" className="relative bg-[url('/bg-starterpage.png')] font-sans">
 
@@ -14,13 +34,13 @@ export default function Home() {
 
       <div id="mainContent" className="flex grid justify-center pt-16 pb-10">
 
-        <div id="dropdownTools" className="fixed left-6 top-[350px] z-50">
+        <div ref={ref} id="dropdownTools" className="fixed left-6 top-[130px] z-50">
 
-          <button  id="dropdownBtn" className="shadow-xl/30 border-2 border-lime-300 rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+          <button onClick={() => setOpen((o) => !o)} id="dropdownBtn" className="shadow-xl/30 border-2 border-lime-300 rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
             <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_book_2.ico" alt="" className="p-2" />
           </button>
 
-          <div id="dropdownContent" className="w-85 flex grid border-2 border-lime-300 rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4">
+          <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-85 grid border-2 border-lime-300 rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
             <h1 className="flex text-center text-3xl font-semibold text-lime-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4">Tools</h1> <hr className="h-2 rounded bg-lime-300 border-0"/>
             <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">My Pokémon <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end"/></a>
             <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Tier Lists <img src="https://frutigeraeroarchive.org/images/icons/utilities/explorer.ico" alt="" className="w-10 h-10 justify-self-end"/></a>
