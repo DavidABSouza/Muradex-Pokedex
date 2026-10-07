@@ -6,15 +6,35 @@ export default function Home() {
 
       <div id="header" className="flex grid justify-center rounded-b-2xl pb-3 shadow-xl/30 bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
         <header>
-          <h1 className="text-center text-9xl text-yellow-300 font-bold text-shadow-lg/30 text-shadow-emerald-950 tracking-widest">MURADEX</h1>
+          <h1 className="flex text-center text-9xl text-yellow-300 font-bold text-shadow-lg/30 text-shadow-emerald-950 tracking-widest"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10 justify-self-end self-center"/>MURADEX <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10 justify-self-end self-center"/></h1>
           <h6 className="text-center text-lg text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 font-semibold">Search, Study, Rank and Write about Pokémon!</h6>
           <h2 className="text-center text-3xl text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950">Welcome Trainers!</h2>
         </header>
       </div>
 
       <div id="mainContent" className="flex grid justify-center pt-16 pb-10">
+
+        <div id="dropdownTools" className="fixed left-6 top-[350px] z-50">
+
+          <button  id="dropdownBtn" className="shadow-xl/30 border-2 border-lime-300 rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+            <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_book_2.ico" alt="" className="p-2" />
+          </button>
+
+          <div id="dropdownContent" className="w-85 flex grid border-2 border-lime-300 rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4">
+            <h1 className="flex text-center text-3xl font-semibold text-lime-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4">Tools</h1> <hr className="h-2 rounded bg-lime-300 border-0"/>
+            <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">My Pokémon <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end"/></a>
+            <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Tier Lists <img src="https://frutigeraeroarchive.org/images/icons/utilities/explorer.ico" alt="" className="w-10 h-10 justify-self-end"/></a>
+            <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Notes <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-10 h-10 justify-self-end"/></a>
+            <br />
+            <h1 className="flex text-center text-3xl font-semibold text-lime-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4">Website Styles</h1> <hr className="h-2 rounded bg-lime-300 border-0"/>
+            <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-indigo-300 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Aero Scape<img src="https://em-content.zobj.net/source/apple/325/bubbles_1fae7.png" alt="" className="w-10 h-10 justify-self-end"/></a>
+            <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-violet-400 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Purpura Forest<img src="https://png.pngtree.com/png-vector/20240128/ourmid/pngtree-tree-purple-cartoon-doodle-png-image_11556717.png" alt="" className="w-10 h-10 justify-self-end"/></a>
+            <a href="#" className="rounded-xl flex text-start text-3xl font-semibold text-blue-500 text-shadow-lg/30 text-shadow-emerald-950 gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Deep Ocean<img src="https://frutigeraeroarchive.org/images/resources/water/thumbnails/water_32.png" alt="" className="w-10 h-10 justify-self-end"/></a>
+          </div>
+
+        </div>
         
-        <form action="" id="searchBar" className="border-4 border-lime-300 rounded-xl p-6 bg-linear-to-br from-white/60 to-white/5 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+        <form action="" id="searchBar" className="flex border-4 border-lime-300 rounded-xl p-6 bg-linear-to-br from-white/60 to-white/5 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
           <input type="text" className="w-200 text-2xl font-semibold text-yellow-300 ronded-xl mr-2  outline-hidden" placeholder="Search Pokémon by name, generation, type, entry number..."/>
           <button type="submit" className="bg-linear-to-tl from-sky-400 to-white border-2 border-yellow-300 rounded-xl text-3xl text-yellow-300 font-bold p-1 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Search!</button>
         </form>
@@ -103,4 +123,3 @@ export default function Home() {
     </div>
   );
 }
-
