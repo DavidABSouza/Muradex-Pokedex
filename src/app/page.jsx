@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div id="body" className="relative bg-[url('/bg-starterpage.png')] font-sans">
 
-      <div id="header" className="flex grid justify-center rounded-b-2xl pb-3 shadow-xl/30 bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+      <div id="header" className="flex grid justify-center rounded-b-2xl pb-3 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
         <header>
           <h1 className="flex text-center text-9xl text-yellow-300 font-bold text-shadow-lg/30 text-shadow-emerald-950 tracking-widest"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10 justify-self-end self-center"/>MURADEX <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10 justify-self-end self-center"/></h1>
           <h6 className="text-center text-lg text-yellow-300 text-shadow-lg/30 text-shadow-emerald-950 font-semibold">Search, Study, Rank and Write about Pokémon!</h6>
@@ -116,7 +116,7 @@ export default function Home() {
 
       </div>
 
-      <div id="footer" className="flex grid justify-center p-10 rounded-t-2xl bg-linear-to-t from-sky-400 to-white">
+      <div id="footer" className="flex grid justify-center p-10 rounded-t-2xl bg-linear-to-b from-white/70 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
         <footer className="flex gap-45">
 
           <img src="/MurasakiCreations.png" alt="Logo MC" className="w-25 h-25 rounded transition-all duration-300 ease-in-out hover:scale-102"/>
