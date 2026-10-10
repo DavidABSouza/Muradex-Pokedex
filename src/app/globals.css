@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-shade: var(--shade);
+}
+
+:root {
+  --accent: #bef264;   /* lime-300 */
+  --primary: #fde047;  /* yellow-300 */
+  --shade: #022c22;    /* emerald-950 */
+}
+
+[data-theme="jellyfishes"] {
+  --accent: #c4b5fd;
+  --primary: #f0abfc;
+  --shade: #2e1065;
+}
+
+[data-theme="dorfic"] {
+  --accent: #ff9100;
+  --primary: #ffece2;
+  --shade: #662b09;
+}

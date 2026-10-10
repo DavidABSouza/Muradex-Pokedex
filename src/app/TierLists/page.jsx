@@ -1,6 +1,9 @@
 export default function TierLists(){
     return(
-        <h1>fksgfosjdgos</h1>
+        <div>
+            <a href="/">Voltar</a>
+            <h1>TierLists</h1>
+        </div>
     )
 
 }
