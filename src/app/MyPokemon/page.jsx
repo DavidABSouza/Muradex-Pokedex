@@ -8,7 +8,19 @@ export default function MyPokemon() {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
     const [theme, setTheme] = useState("aero");
+    const [lista, setLista] = useState([]);
+    const [carregado, setCarregado] = useState(false);
 
+    useEffect(() => {
+        setLista(JSON.parse(localStorage.getItem("myPokemon") || "[]"));
+        setCarregado(true);
+    }, []);
+
+    function remover(id) {
+        const nova = lista.filter((p) => p.id !== id);
+        setLista(nova);
+        localStorage.setItem("myPokemon", JSON.stringify(nova));
+    }
 
     useEffect(() => {
         const saved = localStorage.getItem("theme");
@@ -48,11 +60,11 @@ export default function MyPokemon() {
 
     return (
 
-        <div id="body" data-theme={theme} className=" isolate font-sans">
+        <div id="body" data-theme={theme} className="isolate font-sans">
             {Object.entries(THEMES).map(([key, t]) => (
                 <div
                     key={key}
-                    className={`absolute inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+                    className={`fixed inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
 
@@ -88,10 +100,24 @@ export default function MyPokemon() {
 
                 </div>
 
-                <div id="pokemonContainer" className="w-400 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
-                    <h1 className=" pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">All of Your Saved Pokémon Will Appear Here!</h1>
-                </div>
+                <main className="p-6 flex flex-col gap-3">
+                    {carregado && lista.length === 0 && (
+                        <p className="w-250 h-20 text-white text-center text-3xl p-4 font-extrabold border-2 border-accent rounded-3xl bg-linear-to-b from-white/50 to-white/15">You haven't saved any Pokémon yet.</p>
+                    )}
 
+                    {lista.map((p) => (
+                        <div key={p.id} className="flex items-center w-350 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
+                            <Link href={`/PokeLoader/${p.id}`} className="w-350 flex items-center gap-6 rounded-3xl transition-all duration-300 ease-in-out cursor-pointer p-4 text-center text-primary">
+                                <img src={p.imagem} alt={p.nome} className="w-24 h-24 object-contain shrink-0" />
+                                <p className="capitalize font-semibold text-3xl flex-1">{p.nome}</p>
+                                <p className="text-xl opacity-60">#{p.id}</p>
+                            </Link>
+                            <button onClick={() => remover(p.id)} className="text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10">
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+                </main>
 
             </div>
         </div>

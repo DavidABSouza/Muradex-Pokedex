@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { useState, useRef, useEffect } from "react";
 
+
+
 export const THEMES = {
   aero: { label: "Aero Scape", wallpaper: "bg-[url('/bg-starterpage.png')]" },
   dorfic: { label: "DORFic Lounge", wallpaper: "bg-[url('/bg-dorfic.png')]" },
@@ -142,7 +144,7 @@ export default function Home() {
           </form>
 
           {termo !== "" && (
-            <div className="absolute left-0 right-0 top-full mt-2 z-50 max-h-[70vh] overflow-y-auto border border-purple-300/50 bg-accent/70 backdrop-blur p-3 scrollbar-thumb-primary scrollbar-track-accent ">
+            <div className="absolute left-0 right-0 top-full mt-2 z-50 max-h-[70vh] overflow-y-auto border border-purple-300/50 bg-shade/50 backdrop-blur p-3 scrollbar-thumb-primary scrollbar-track-accent ">
               {filtrados.length === 0 ? (
                 <p className="text-center text-white font-extrabold">Nenhum Pokémon encontrado.</p>
               ) : (
@@ -175,51 +177,51 @@ export default function Home() {
 
         <div id="generationSearch" className="justify-center pt-16 transition-all duration-300 ease-in-out hover:scale-102">
 
-          <h1 className=" pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Check Out Pokémon by their Generations!</h1>
+          <h1 className=" pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Check Out Pokémon by their Generations and Regions!</h1>
 
           <div id="generationSearchContainers" className="shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 w-275 justify-items-center shadow-xl flex-row grid grid-cols-3 gap-8 p-4 border-4 border-accent rounded-3xl bg-blend-soft-light">
 
-            <a id="gen1" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen1" href="/GenLoader/1" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/b3/fb/ed/b3fbed0b161349a1e642ffcbec242ed7.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 1 Kanto Region</h2>
             </a>
 
-            <a id="gen2" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen2" href="/GenLoader/2" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/0c/d5/95/0cd595176b438f0691d180e2a0c95577.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 2 Johto Region</h2>
             </a>
 
-            <a id="gen3" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen3" href="/GenLoader/3" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/6c/21/0c/6c210c3c36e246cdec2820f71161271c.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 3 Hoenn Region</h2>
             </a>
 
-            <a id="gen4" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen4" href="/GenLoader/4" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/69/a8/10/69a810ee3a84b213bb798e5c05b6da07.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 w-54 text-shadow-lg/30">Generation 4 Sinnoh Region</h2>
             </a>
 
-            <a id="gen5" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen5" href="/GenLoader/5" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/8a/c3/b7/8ac3b7e1cada3de29beabdb98f36d055.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 5 Unova Region</h2>
             </a>
 
-            <a id="gen6" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen6" href="/GenLoader/6" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/4d/92/13/4d92132f8053c8ba12ca620b7cb4da40.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 6 Kalos Region</h2>
             </a>
 
-            <a id="gen7" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen7" href="/GenLoader/7" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/42/f8/dc/42f8dc53d855d2c1a6f3b64ba09609ac.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 7 Alola Region</h2>
             </a>
 
-            <a id="gen8" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen8" href="/GenLoader/8" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/81/bd/eb/81bdebccb9094228a46868ecfc0da807.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 8 Galar Region</h2>
             </a>
 
-            <a id="gen9" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <a id="gen9" href="/GenLoader/9" className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/25/7b/14/257b14cb732e996a81555711aa8acb19.jpg" alt="" className="w-75 rounded-xl" />
               <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 9 Paldea Region</h2>
             </a>
