@@ -6,7 +6,7 @@
 
 
 
-* **Ideia:** Uma Pokédex interativa com odos os Pokémons de todas as gerações separados com todas as suas informações necessárias usando APIs com essas informações.
+* **Ideia:** Uma Pokédex interativa com todos os Pokémons de todas as gerações separados com todas as suas informações necessárias usando APIs com essas informações.
 
 
 
