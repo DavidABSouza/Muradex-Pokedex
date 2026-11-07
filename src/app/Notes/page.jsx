@@ -15,6 +15,17 @@ export default function Notes() {
     const [open, setOpen] = useState(false);
     const ref = useRef(null);
     const [theme, setTheme] = useState("aero");
+    const [salvos, setSalvos] = useState([]);
+    const [escolhido, setEscolhido] = useState("");
+    const [texto, setTexto] = useState("");
+    const [notas, setNotas] = useState([]);
+    const [carregado, setCarregado] = useState(false);
+
+    useEffect(() => {
+        setSalvos(JSON.parse(localStorage.getItem("myPokemon") || "[]"));
+        setNotas(JSON.parse(localStorage.getItem("pokeNotes") || "[]"));
+        setCarregado(true);
+    }, []);
 
 
     useEffect(() => {
@@ -50,6 +61,33 @@ export default function Notes() {
         const snd = new Audio("/Click2.wav");
         snd.play();
         snd.currentTime = 0;
+    }
+
+    function guardar(nova) {
+        setNotas(nova);
+        localStorage.setItem("pokeNotes", JSON.stringify(nova));
+    }
+
+    function adicionar() {
+        const p = salvos.find((s) => String(s.id) === escolhido);
+        if (!p || texto.trim() === "") return;
+
+        const nova = {
+            id: Date.now(),
+            pokemonId: p.id,
+            pokemon: p.nome,
+            imagem: p.imagem,
+            texto: texto.trim(),
+            data: new Date().toLocaleDateString("en-EN"),
+        };
+
+        guardar([nova, ...notas]);
+        setEscolhido("");
+        setTexto("");
+    }
+
+    function apagar(id) {
+        guardar(notas.filter((n) => n.id !== id));
     }
 
 
@@ -95,23 +133,61 @@ export default function Notes() {
                 </div>
 
                 <div id="notesContainer" className="w-275 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
+
                     <div id="addNote">
+
                         <h1 className="pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Write and Save Notes on any Pokémon You want!</h1>
                         <br />
                         <form action="" className="grid justify-center border-3 border-accent rounded-3xl p-4">
+
                             <h1 className="text-center text-2xl text-primary font-bold p-1 pb-4 text-shadow-lg/30 justify-self-start">Select the Pokémon:</h1>
-                            <input type="text" placeholder="What's the name of your Pokémon?" id="digite-nome" required className="w-200 text-2xl font-semibold text-primary ronded-xl mr-2  outline-hidden border-3 border-primary rounded-3xl p-4" />
+                            <select
+                                value={escolhido}
+                                onChange={(e) => setEscolhido(e.target.value)}
+                                className="w-200 text-2xl font-semibold text-primary rounded-l-3xl mr-2 outline-hidden border-3 border-primary p-4"
+                            >
+                                <option value="" className="text-primary">Select one of your saved Pokémon...</option>
+                                {salvos.map((s) => (
+                                    <option key={s.id} value={s.id} className="capitalize text-primary">
+                                        {s.nome}
+                                    </option>
+                                ))}
+                            </select>
+                            {carregado && salvos.length === 0 && (
+                                    <p className="text-center text-2xl text-white font-bold p-1 pb-4 text-shadow-lg/30 justify-self-center">
+                                        You have no saved Pokémon yet.{" "}
+                                        <Link href="/" className="underline">Search for one</Link> and save it first!
+                                    </p>
+                                )}
+
                             <br /><br /><br />
                             <h1 className="text-center text-2xl text-primary font-bold p-1 pb-4 text-shadow-lg/30 justify-self-start">Add the Text You want:</h1>
-                            <textarea name="" id="digite-efeito" placeholder="Talk about it..! C'mon!!" required className="w-200 h-50 text-2xl font-semibold text-primary ronded-xl mr-2  outline-hidden border-3 border-primary rounded-3xl p-4"></textarea>
+                            <textarea value={texto} onChange={(e) => setTexto(e.target.value)} id="digite-efeito" placeholder="Talk about it..! C'mon!!" required className="w-200 h-50 text-2xl font-semibold text-primary ronded-xl mr-2  outline-hidden border-3 border-primary rounded-3xl p-4"></textarea>
+
                             <br /><br /><br />
-                            <button type="button" id="adicionar" className="w-100 w-bg-linear-to-tl from-sky-400 to-white border-2 border-primary rounded-xl text-3xl text-primary font-bold p-1 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg justify-self-center">Add Note!</button>
+                            <button onClick={adicionar} type="button" id="adicionar" className="w-100 w-bg-linear-to-tl from-sky-400 to-white border-2 border-primary rounded-xl text-3xl text-primary font-bold p-1 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg justify-self-center">Add Note!</button>
                         </form>
+
                     </div>
                 </div>
                 <br /><br /><br />
                 <div id="createdNotes" className="w-275 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
                     <h1 className="pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Created Notes: </h1>
+                    {notas.map((n) => (
+                        <div key={n.id} className="flex gap-4 rounded-xl p-4 bg-white/10">
+                            <Link href={`/PokeLoader/${n.pokemonId}`}>
+                                <img src={n.imagem} alt={n.pokemon} className="w-20 h-20 object-contain shrink-0" />
+                            </Link>
+                            <div className="flex-1 min-w-0">
+                                <div className="flex justify-between items-center gap-4">
+                                    <h3 className="capitalize text-4xl font-semibold text-primary">{n.pokemon}</h3>
+                                    <button className="text-primary font-semibold" onClick={() => apagar(n.id)}>Delete</button>
+                                </div>
+                                <p className="whitespace-pre-wrap wrap-break-word pt-2 text-accent text-2xl">{n.texto}</p>
+                                <p className="text-sm opacity-60 pt-2 text-shade">{n.data}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
             </div>

@@ -14,6 +14,10 @@ export default function PokeLoader() {
     const [descricao, setDescricao] = useState("");
     const [erro, setErro] = useState(null);
     const [salvo, setSalvo] = useState(false);
+    const [especie, setEspecie] = useState(null);
+    const femea = especie ? (especie.gender_rate / 8) * 100 : 0;
+    const macho = 100 - femea;
+    const [shiny, setShiny] = useState(false);
 
 
     useEffect(() => {
@@ -49,7 +53,7 @@ export default function PokeLoader() {
                     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
                     fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`),
                 ]);
-                if (!resP.ok || !resE.ok) throw new Error("Pokémon não encontrado");
+                if (!resP.ok || !resE.ok) throw new Error("Pokémon not found.");
 
                 const p = await resP.json();
                 const e = await resE.json();
@@ -59,6 +63,7 @@ export default function PokeLoader() {
                     e.flavor_text_entries.find((x) => x.language.name === "en");
 
                 setPokemon(p);
+                setEspecie(e);
                 setDescricao(entrada ? entrada.flavor_text.replace(/[\n\f]/g, " ") : "");
             } catch (err) {
                 setErro(err.message);
@@ -92,7 +97,6 @@ export default function PokeLoader() {
 
         localStorage.setItem("myPokemon", JSON.stringify(nova));
         setSalvo(!salvo);
-        clickSound();
     }
 
     function menuSound() {
@@ -114,7 +118,7 @@ export default function PokeLoader() {
             {Object.entries(THEMES).map(([key, t]) => (
                 <div
                     key={key}
-                    className={`absolute inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+                    className={`fixed inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
 
@@ -137,12 +141,14 @@ export default function PokeLoader() {
                 <div id="pokemonContainer" className="w-400 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
 
                     {erro && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">{erro}</p>}
-                    {!erro && !pokemon && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Carregando...</p>}
+                    {!erro && !pokemon && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Loading...</p>}
 
                     {pokemon && (
                         <>
                             <img
-                                src={pokemon.sprites.other["official-artwork"].front_default}
+                                src={shiny
+                                    ? pokemon.sprites.other["official-artwork"].front_shiny
+                                    : pokemon.sprites.other["official-artwork"].front_default}
                                 alt={pokemon.name}
                                 className="w-50 h-50 rounded-full bg-linear-to-br from-white/50 to-white/5 overflow-visible shadow-lg justify-center"
                             />
@@ -155,22 +161,79 @@ export default function PokeLoader() {
                                 {pokemon.types.map((t) => t.type.name).join(" / ")}
                             </p>
 
-                            <p className="text-2xl text-primary pt-4">{descricao}</p>
+                            <p className="normal-case text-2xl text-primary font-semibold pt-4">Pokedex Entry: "{descricao}"</p>
 
-                            <p className="text-2xl text-primary pt-4 pb-8">
+                            <p className="text-2xl text-primary font-semibold pt-4">
                                 Height: {pokemon.height / 10} m · Weight: {pokemon.weight / 10} kg
                             </p>
+
+                            <p className="capitalize text-2xl text-primary font-semibold pt-4">
+                                Abilities:{" "}
+                                {pokemon.abilities
+                                    .map((a) => a.ability.name.replace("-", " ") + (a.is_hidden ? " (hidden)" : ""))
+                                    .join(", ")}
+                            </p>
+
+                        </>)}
+                    {especie && (
+                        <>
+                            <p className="capitalize text-2xl font-semibold text-primary pt-4">
+                                {especie.gender_rate === -1
+                                    ? "Gender: Genderless"
+                                    : `Gender: ♂ ${macho}% · ♀ ${femea}%`}
+                            </p>
+
+                            <p className="capitalize text-2xl font-semibold text-primary pt-4">
+                                Habitat: {especie.habitat?.name ?? "unknown"}
+                            </p>
+
+                            <p className="capitalize text-2xl font-semibold text-primary pt-4">
+                                {especie.is_legendary && "Rarity: Legendary"}
+                                {especie.is_mythical && "Rarity: Mythical"}
+                            </p>
                         </>
-
-
                     )}
 
-                    <button
-                        onClick={alternarSalvo}
-                        className="text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
-                    >
-                        {salvo ? "★ Saved" : "☆ Save Pokémon"}
-                    </button>
+                    {pokemon && (
+                        <>
+                            <div className="grid gap-2 pt-6">
+                                {pokemon.stats.map((s) => (
+                                    <div key={s.stat.name} className="flex items-center gap-4">
+                                        <span className="uppercase w-48 text-xl text-primary font-semibold">{s.stat.name.replace("-", " ")}</span>
+                                        <div className="flex-1 h-4 rounded-full bg-white/20">
+                                            <div
+                                                className="h-4 rounded-full bg-accent"
+                                                style={{ width: `${(s.base_stat / 255) * 100}%` }}
+                                            />
+                                        </div>
+                                        <span className="w-12 text-xl text-primary font-semibold">{s.base_stat}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    <div id="buttons" className="flex mt-8">
+                        <button className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10" onClick={() => setShiny(!shiny)}>{shiny ? "✧ Normal" : "✦ Shiny"}</button>
+
+                        <button
+                            onClick={() => {
+                                const grito = new Audio(pokemon.cries.latest);
+                                grito.volume = 0.4;
+                                grito.play();
+                            }}
+                            className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
+                        >
+                            🕪 Cry
+                        </button>
+
+                        <button
+                            onClick={alternarSalvo}
+                            className="self-end text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
+                        >
+                            {salvo ? "★ Saved" : "☆ Save Pokémon"}
+                        </button>
+                    </div>
 
                 </div>
 

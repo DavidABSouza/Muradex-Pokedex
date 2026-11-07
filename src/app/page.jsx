@@ -26,7 +26,7 @@ export default function Home() {
     async function carregar() {
       try {
         const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1025");
-        if (!res.ok) throw new Error("Falha ao buscar a PokéAPI");
+        if (!res.ok) throw new Error("Failed to get PokéAPI");
         const dados = await res.json();
 
         const lista = dados.results.map((p) => {
@@ -91,8 +91,8 @@ export default function Home() {
     snd.currentTime = 0;
   }
 
-  if (carregando) return <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Carregando...</p>;
-  if (erro) return <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Erro: {erro}</p>;
+  if (carregando) return <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Loading...</p>;
+  if (erro) return <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Error: {erro}</p>;
 
   return (
 
@@ -146,7 +146,7 @@ export default function Home() {
           {termo !== "" && (
             <div className="absolute left-0 right-0 top-full mt-2 z-50 max-h-[70vh] overflow-y-auto border border-purple-300/50 bg-shade/50 backdrop-blur p-3 scrollbar-thumb-primary scrollbar-track-accent ">
               {filtrados.length === 0 ? (
-                <p className="text-center text-white font-extrabold">Nenhum Pokémon encontrado.</p>
+                <p className="text-center text-white font-extrabold">No Pokémon was found.</p>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {filtrados.map((p) => (

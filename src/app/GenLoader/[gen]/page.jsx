@@ -105,7 +105,7 @@ export default function GenLoader() {
 
                     </div>
 
-                    {carregando && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Carregando...</p>}
+                    {carregando && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Loading...</p>}
                     {erro && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">{erro}</p>}
 
                     <div className="flex flex-col gap-3 w-full">
