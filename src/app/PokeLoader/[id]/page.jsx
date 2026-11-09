@@ -99,14 +99,9 @@ export default function PokeLoader() {
         setSalvo(!salvo);
     }
 
-    function menuSound() {
-        const snd = new Audio("/Click.mp3");
-        snd.play();
-        snd.currentTime = 0;
-    }
-
-    function clickSound() {
-        const snd = new Audio("/Click2.wav");
+    function WebsiteSoundsystem(audioName) {
+        const snd = new Audio(audioName);
+        snd.volume = 0.25;
         snd.play();
         snd.currentTime = 0;
     }
@@ -133,7 +128,7 @@ export default function PokeLoader() {
                 <div id="divBackBtn" className="fixed left-6 top-32.5 z-50">
 
                     <button id="backBtn" className="shadow-xl/30 border-2 border-accent rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
-                        <a href="/"><img src="https://i.redd.it/vyu0jqsf7ota1.png" alt="" className=" w-15 h-15 p-2" /></a>
+                        <Link href="/" onClick={() => WebsiteSoundsystem("/Back.mp3")}><img src="https://i.redd.it/vyu0jqsf7ota1.png" alt="" className=" w-15 h-15 p-2" /></Link>
                     </button>
 
                 </div>
@@ -214,12 +209,20 @@ export default function PokeLoader() {
                     )}
 
                     <div id="buttons" className="flex mt-8">
-                        <button className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10" onClick={() => setShiny(!shiny)}>{shiny ? "✧ Normal" : "✦ Shiny"}</button>
+                        <button
+                            className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
+                            onClick={() => {
+                                setShiny(!shiny);
+                                WebsiteSoundsystem("/Shiny.mp3");
+                            }}
+                        >
+                            {shiny ? "✧ Normal" : "✦ Shiny"}
+                        </button>
 
                         <button
                             onClick={() => {
                                 const grito = new Audio(pokemon.cries.latest);
-                                grito.volume = 0.4;
+                                grito.volume = 0.1;
                                 grito.play();
                             }}
                             className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
@@ -228,7 +231,10 @@ export default function PokeLoader() {
                         </button>
 
                         <button
-                            onClick={alternarSalvo}
+                            onClick={() => {
+                                alternarSalvo();
+                                WebsiteSoundsystem("/Save.mp3");
+                            }}
                             className="self-end text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
                         >
                             {salvo ? "★ Saved" : "☆ Save Pokémon"}
