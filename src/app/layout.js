@@ -8,7 +8,9 @@ export default function RootLayout({ children }) {
       lang="en"
     >
       <body>
-        {children}</body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
