@@ -103,7 +103,7 @@ export default function MyPokemon() {
 
                     {lista.map((p) => (
                         <div key={p.id} className="flex items-center w-350 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
-                            <Link onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Back.mp3")} href={`/PokeLoader/${p.id}`} className="w-350 flex items-center gap-6 rounded-3xl transition-all duration-300 ease-in-out cursor-pointer p-4 text-center text-primary">
+                            <Link onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} href={`/PokeLoader/${p.id}`} className="w-350 flex items-center gap-6 rounded-3xl transition-all duration-300 ease-in-out cursor-pointer p-4 text-center text-primary">
                                 <img src={p.imagem} alt={p.nome} className="w-24 h-24 object-contain shrink-0" />
                                 <p className="capitalize font-semibold text-3xl flex-1">{p.nome}</p>
                                 <p className="text-xl opacity-60">#{p.id}</p>
