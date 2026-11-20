@@ -82,7 +82,7 @@ export default function Home() {
   function WebsiteSoundsystem(audioName) {
     const snd = new Audio(audioName);
     snd.volume = 0.25;
-    snd.play().catch(() => {});
+    snd.play().catch(() => { });
     snd.currentTime = 0;
   }
 
@@ -91,25 +91,25 @@ export default function Home() {
 
   return (
 
-    <div id="body" data-theme={theme} className="relative isolate font-sans bg-size-[100%_auto]">
+    <div id="body" data-theme={theme} className="relative isolate font-sans bg-size-[100%_auto] overflow-x-clip">
       {Object.entries(THEMES).map(([key, t]) => (
         <div
           key={key}
-          className={`fixed inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+          className={`fixed inset-0 -z-10 bg-cover bg-center md:bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
         />
       ))}
 
-      <div id="header" className="grid justify-center rounded-b-2xl pb-3 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+      <div id="header" className="grid justify-center rounded-b-2xl px-3 pt-20 md:pt-0 pb-3 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
         <header>
-          <h1 className="flex text-center text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade tracking-widest"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10 justify-self-end self-center" />MURADEX <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10 justify-self-end self-center" /></h1>
-          <h6 className="text-center text-lg text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Search, Study, Rank and Write about Pokémon!</h6>
-          <h2 className="text-center text-3xl text-primary text-shadow-lg/30 text-shadow-shade">Welcome Trainers!</h2>
+          <h1 className="flex text-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade tracking-wide md:tracking-widest"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" />MURADEX <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /></h1>
+          <h6 className="text-center text-base sm:text-lg text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Search, Study, Rank and Write about Pokémon!</h6>
+          <h2 className="text-center text-xl sm:text-3xl text-primary text-shadow-lg/30 text-shadow-shade">Welcome Trainers!</h2>
         </header>
       </div>
 
-      <div id="mainContent" className="grid justify-center pt-16 pb-10">
+      <div id="mainContent" className="flex flex-col items-center px-3 md:px-6 pt-8 md:pt-16 pb-10">
 
-        <div ref={ref} id="dropdownTools" className="fixed left-6 top-20 z-50">
+        <div ref={ref} id="dropdownTools" className="fixed left-3 top-3 md:left-6 md:top-20 z-50">
 
           <button onClick={() => {
             setOpen((o) => !o)
@@ -118,7 +118,7 @@ export default function Home() {
             <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_book_2.ico" alt="" className="p-2" />
           </button>
 
-          <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-85 grid border-2 border-accent rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
+          <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-[min(21.25rem,calc(100vw-1.5rem))] max-h-[80vh] overflow-y-auto md:max-h-none md:overflow-visible grid border-2 border-accent rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
             <h1 className="flex text-center text-3xl font-semibold text-accent text-shadow-lg/30 text-shadow-shade gap-4">Tools</h1> <hr className="h-2 rounded bg-accent border-0" />
             <Link href="/" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Starter Page <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10" /></Link>
             <Link href="/MyPokemon" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">My Pokémon <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end" /></Link>
@@ -133,9 +133,9 @@ export default function Home() {
 
         </div>
 
-        <div className="relative">
-          <form action="" id="searchBar" className="flex border-4 border-accent rounded-xl p-6 bg-linear-to-br from-white/60 to-white/5 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
-            <input type="text" value={busca} onChange={(e) => setBusca(e.target.value)} className="w-full text-2xl font-semibold text-primary ronded-xl mr-2  outline-hidden" placeholder="Search Pokémon by name or entry number..." />
+        <div className="relative w-full max-w-275">
+          <form action="" onSubmit={(e) => e.preventDefault()} id="searchBar" className="flex border-4 border-accent rounded-xl p-3 md:p-6 bg-linear-to-br from-white/60 to-white/5 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+            <input type="text" value={busca} onChange={(e) => setBusca(e.target.value)} className="w-full text-lg md:text-2xl font-semibold text-primary mr-2  outline-hidden" placeholder="Search Pokémon by name or entry number..." />
           </form>
 
           {termo !== "" && (
@@ -171,55 +171,55 @@ export default function Home() {
           )}
         </div>
 
-        <div id="generationSearch" className="justify-center pt-16 transition-all duration-300 ease-in-out hover:scale-102">
+        <div id="generationSearch" className="w-full max-w-275 pt-8 md:pt-16 transition-all duration-300 ease-in-out hover:scale-102">
 
-          <h1 className=" pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Check Out Pokémon by their Generations and Regions!</h1>
+          <h1 className=" pb-4 text-center text-2xl md:text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Check Out Pokémon by their Generations and Regions!</h1>
 
-          <div id="generationSearchContainers" className="shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 w-275 justify-items-center shadow-xl flex-row grid grid-cols-3 gap-8 p-4 border-4 border-accent rounded-3xl bg-blend-soft-light">
+          <div id="generationSearchContainers" className="shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 w-full justify-items-center shadow-xl flex-row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 p-3 md:p-4 border-4 border-accent rounded-3xl bg-blend-soft-light">
 
-            <Link id="gen1" href="/GenLoader/1" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen1" href="/GenLoader/1" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/b3/fb/ed/b3fbed0b161349a1e642ffcbec242ed7.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 1 Kanto Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 1 Kanto Region</h2>
             </Link>
 
-            <Link id="gen2" href="/GenLoader/2" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen2" href="/GenLoader/2" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/0c/d5/95/0cd595176b438f0691d180e2a0c95577.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 2 Johto Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 2 Johto Region</h2>
             </Link>
 
-            <Link id="gen3" href="/GenLoader/3" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen3" href="/GenLoader/3" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/6c/21/0c/6c210c3c36e246cdec2820f71161271c.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 3 Hoenn Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 3 Hoenn Region</h2>
             </Link>
 
-            <Link id="gen4" href="/GenLoader/4" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen4" href="/GenLoader/4" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/69/a8/10/69a810ee3a84b213bb798e5c05b6da07.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 w-54 text-shadow-lg/30">Generation 4 Sinnoh Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 w-54 text-shadow-lg/30">Generation 4 Sinnoh Region</h2>
             </Link>
 
-            <Link id="gen5" href="/GenLoader/5" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen5" href="/GenLoader/5" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/8a/c3/b7/8ac3b7e1cada3de29beabdb98f36d055.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 5 Unova Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 5 Unova Region</h2>
             </Link>
 
-            <Link id="gen6" href="/GenLoader/6" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen6" href="/GenLoader/6" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/4d/92/13/4d92132f8053c8ba12ca620b7cb4da40.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 6 Kalos Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 6 Kalos Region</h2>
             </Link>
 
-            <Link id="gen7" href="/GenLoader/7" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen7" href="/GenLoader/7" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/42/f8/dc/42f8dc53d855d2c1a6f3b64ba09609ac.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 7 Alola Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 7 Alola Region</h2>
             </Link>
 
-            <Link id="gen8" href="/GenLoader/8" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen8" href="/GenLoader/8" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/81/bd/eb/81bdebccb9094228a46868ecfc0da807.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 8 Galar Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 8 Galar Region</h2>
             </Link>
 
-            <Link id="gen9" href="/GenLoader/9" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-10 w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
+            <Link id="gen9" href="/GenLoader/9" onClick={() => WebsiteSoundsystem("/Enter.mp3")} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="p-4 md:p-10 w-full max-w-75 bg-sky-400 rounded-3xl transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg cursor-pointer bg-linear-to-b from-white to-sky-400">
               <img src="https://i.pinimg.com/1200x/25/7b/14/257b14cb732e996a81555711aa8acb19.jpg" alt="" className="w-75 rounded-xl" />
-              <h2 className="text-center text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 9 Paldea Region</h2>
+              <h2 className="text-center text-2xl md:text-3xl text-primary font-bold p-1 text-shadow-lg/30">Generation 9 Paldea Region</h2>
             </Link>
 
           </div>
@@ -228,30 +228,24 @@ export default function Home() {
 
       </div>
 
-      <div id="footer" className="grid justify-center p-10 rounded-t-2xl bg-linear-to-b from-white/70 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
-        <footer className="flex gap-45">
-
-          <img src="/MurasakiCreations.png" alt="Logo MC" className="w-25 h-25 rounded transition-all duration-300 ease-in-out hover:scale-102" />
-
-          <a href="https://github.com/DavidABSouza" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="place-items-center w-20 h-20 text-3xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold transition-all duration-300 ease-in-out hover:scale-102">
+      <div id="footer" className="flex justify-center p-4 md:p-10 rounded-t-2xl bg-linear-to-b from-white/70 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+        <footer className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-16 lg:gap-24 min-[1320px]:gap-45">
+          <a href="https://github.com/DavidABSouza" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="place-items-center w-20 h-20 text-xl md:text-3xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold transition-all duration-300 ease-in-out hover:scale-102">
             <img src="https://i.redd.it/lkyrwyojmjth1.png" alt="GitHub Logo" className="rounded-2xl" />
             <h1>GitHub</h1>
           </a>
 
-          <a href="https://www.instagram.com/pfs_davidsouza/" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="place-items-center w-20 h-20 text-3xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold transition-all duration-300 ease-in-out hover:scale-102">
+          <a href="https://www.instagram.com/pfs_davidsouza/" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="place-items-center w-20 h-20 text-xl md:text-3xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold transition-all duration-300 ease-in-out hover:scale-102">
             <img src="https://i.pinimg.com/564x/bc/1a/71/bc1a710e5159a70c0dc15dab77a987f3.jpg" alt="Instagram Logo" className="rounded-2xl" />
             <h1 className="">Instagram</h1>
           </a>
 
-
-          <a href="https://www.tiktok.com/@purpuraking__" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="place-items-center w-20 h-20 text-3xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold transition-all duration-300 ease-in-out hover:scale-102">
+          <a href="https://www.tiktok.com/@purpuraking__" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="place-items-center w-20 h-20 text-xl md:text-3xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold transition-all duration-300 ease-in-out hover:scale-102">
             <img src="https://i.pinimg.com/564x/e0/64/87/e06487db4c9a77d4f2644cf95e157e61.jpg" alt="TikTok" className="rounded-2xl" />
             <h1>TikTok</h1>
           </a>
-
-          <img src="/PFSINDIE.jpg" alt="Logo PFS" className="w-25 h-25 rounded transition-all duration-300 ease-in-out hover:scale-102" />
         </footer>
       </div>
-    </div >
+    </div>
   );
 }

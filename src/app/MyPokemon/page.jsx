@@ -55,33 +55,33 @@ export default function MyPokemon() {
 
     return (
 
-        <div id="body" data-theme={theme} className="isolate font-sans">
+        <div id="body" data-theme={theme} className="isolate font-sans overflow-x-clip">
             {Object.entries(THEMES).map(([key, t]) => (
                 <div
                     key={key}
-                    className={`fixed inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+                    className={`fixed inset-0 -z-10 bg-cover bg-center md:bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
 
-            <div id="header" className="grid justify-center rounded-b-2xl pb-5 pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+            <div id="header" className="grid justify-center rounded-b-2xl px-3 pb-5 pt-20 md:pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                 <header>
-                    <h1 className="flex text-center text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end self-center" />YOUR POKÉMON <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end self-center" /></h1>
-                    <h1 className="text-center text-primary font-bold text-shadow-lg/30 text-shadow-shade">(Your saved Pokémon appear here for easier organization!)</h1>
+                    <h1 className="flex text-center text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" />YOUR POKÉMON <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /></h1>
+                    <h1 className="text-center text-sm md:text-base text-primary font-bold text-shadow-lg/30 text-shadow-shade">(Your saved Pokémon appear here for easier organization!)</h1>
                 </header>
             </div>
 
-            <div id="mainContent" className="grid justify-center pt-16 pb-10">
+            <div id="mainContent" className="flex flex-col items-center px-3 md:px-6 pt-8 md:pt-16 pb-10">
 
-                <div ref={ref} id="dropdownTools" className="fixed left-6 top-32.5 z-50">
+                <div ref={ref} id="dropdownTools" className="fixed left-3 top-3 md:left-6 md:top-32.5 z-50">
 
                     <button onClick={() => {
                         setOpen((o) => !o)
-                        WebsiteSoundsystem("DropdownClick.mp3")
+                        WebsiteSoundsystem("/DropdownClick.mp3")
                     }} id="dropdownBtn" className="shadow-xl/30 border-2 border-accent rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                         <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_book_2.ico" alt="" className="p-2" />
                     </button>
 
-                    <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-85 grid border-2 border-accent rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
+                    <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-[min(21.25rem,calc(100vw-1.5rem))] max-h-[80vh] overflow-y-auto md:max-h-none md:overflow-visible grid border-2 border-accent rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
                         <h1 className="flex text-center text-3xl font-semibold text-accent text-shadow-lg/30 text-shadow-shade gap-4">Tools</h1> <hr className="h-2 rounded bg-accent border-0" />
                         <Link href="/" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Starter Page <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10" /></Link>
                         <Link href="/MyPokemon" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">My Pokémon <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end" /></Link>
@@ -89,26 +89,26 @@ export default function MyPokemon() {
                         <Link href="/Notes" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Notes <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-10 h-10 justify-self-end" /></Link>
                         <br />
                         <h1 className="flex text-center text-3xl font-semibold text-accent text-shadow-lg/30 text-shadow-shade gap-4">Website Styles</h1> <hr className="h-2 rounded bg-accent border-0" />
-                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("aero"); WebsiteSoundsystem("Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-indigo-200 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Aero Scape<img src="https://em-content.zobj.net/source/apple/325/bubbles_1fae7.png" alt="" className="w-10 h-10 justify-self-end" /></a>
-                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("dorfic"); WebsiteSoundsystem("Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-orange-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">DORFic Lounge<img src="https://png.pngtree.com/png-clipart/20250105/original/pngtree-summer-fruit-fresh-orange-half-orange-png-image_6792015.png" alt="" className="w-10 h-10 justify-self-end" /></a>
-                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("jellyfishes"); WebsiteSoundsystem("Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-violet-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Violet Jellyfishes<img src="https://png.pngtree.com/png-clipart/20250513/original/pngtree-vibrant-purple-jellyfish-png-image_20957555.png" alt="" className="w-10 h-10 justify-self-end" /></a>
+                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("aero"); WebsiteSoundsystem("/Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-indigo-200 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Aero Scape<img src="https://em-content.zobj.net/source/apple/325/bubbles_1fae7.png" alt="" className="w-10 h-10 justify-self-end" /></a>
+                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("dorfic"); WebsiteSoundsystem("/Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-orange-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">DORFic Lounge<img src="https://png.pngtree.com/png-clipart/20250105/original/pngtree-summer-fruit-fresh-orange-half-orange-png-image_6792015.png" alt="" className="w-10 h-10 justify-self-end" /></a>
+                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("jellyfishes"); WebsiteSoundsystem("/Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-violet-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Violet Jellyfishes<img src="https://png.pngtree.com/png-clipart/20250513/original/pngtree-vibrant-purple-jellyfish-png-image_20957555.png" alt="" className="w-10 h-10 justify-self-end" /></a>
                     </div>
 
                 </div>
 
-                <main className="p-6 flex flex-col gap-3">
+                <main className="w-full max-w-362 p-0 md:p-6 flex flex-col gap-3">
                     {carregado && lista.length === 0 && (
-                        <p className="w-250 h-20 text-white text-center text-3xl p-4 font-extrabold border-2 border-accent rounded-3xl bg-linear-to-b from-white/50 to-white/15">You haven't saved any Pokémon yet.</p>
+                        <p className="w-full max-w-250 min-h-20 text-white text-center text-xl md:text-3xl p-4 font-extrabold border-2 border-accent rounded-3xl bg-linear-to-b from-white/50 to-white/15">You haven't saved any Pokémon yet.</p>
                     )}
 
                     {lista.map((p) => (
-                        <div key={p.id} className="flex items-center w-350 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
-                            <Link onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} href={`/PokeLoader/${p.id}`} className="w-350 flex items-center gap-6 rounded-3xl transition-all duration-300 ease-in-out cursor-pointer p-4 text-center text-primary">
-                                <img src={p.imagem} alt={p.nome} className="w-24 h-24 object-contain shrink-0" />
-                                <p className="capitalize font-semibold text-3xl flex-1">{p.nome}</p>
-                                <p className="text-xl opacity-60">#{p.id}</p>
+                        <div key={p.id} className="flex flex-col md:flex-row items-center w-full justify-center transition-all duration-300 ease-in-out md:hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-3 pt-4 md:p-8 md:pt-10">
+                            <Link onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} href={`/PokeLoader/${p.id}`} className="w-full flex items-center gap-3 md:gap-6 rounded-3xl transition-all duration-300 ease-in-out cursor-pointer p-2 md:p-4 text-center text-primary">
+                                <img src={p.imagem} alt={p.nome} className="w-16 h-16 md:w-24 md:h-24 object-contain shrink-0" />
+                                <p className="capitalize font-semibold text-xl md:text-3xl flex-1 min-w-0 wrap-break-word">{p.nome}</p>
+                                <p className="text-base md:text-xl opacity-60">#{p.id}</p>
                             </Link>
-                            <button onClick={() => {remover(p.id); WebsiteSoundsystem("Remove.mp3");}} className="text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10">
+                            <button onClick={() => {remover(p.id); WebsiteSoundsystem("/Remove.mp3");}} className="w-full md:w-auto text-primary text-xl md:text-3xl p-3 md:p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10">
                                 Remove
                             </button>
                         </div>

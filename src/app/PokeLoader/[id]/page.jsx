@@ -109,23 +109,23 @@ export default function PokeLoader() {
 
     return (
 
-        <div id="body" data-theme={theme} className=" isolate font-sans">
+        <div id="body" data-theme={theme} className="isolate font-sans overflow-x-clip">
             {Object.entries(THEMES).map(([key, t]) => (
                 <div
                     key={key}
-                    className={`fixed inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+                    className={`fixed inset-0 -z-10 bg-cover bg-center md:bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
 
-            <div id="header" className="grid justify-center rounded-b-2xl pb-5 pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+            <div id="header" className="grid justify-center rounded-b-2xl px-3 pb-5 pt-20 md:pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                 <header>
-                    <h1 className="flex text-center text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end self-center" />{pokemon && (pokemon.name.toUpperCase())}<img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end self-center" /></h1>
+                    <h1 className="flex text-center text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /><span className="min-w-0 wrap-break-word">{pokemon && (pokemon.name.toUpperCase())}</span><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /></h1>
                 </header>
             </div>
 
-            <div id="mainContent" className="grid justify-center pt-16 pb-10">
+            <div id="mainContent" className="flex flex-col items-center px-3 md:px-6 pt-8 md:pt-16 pb-10">
 
-                <div id="divBackBtn" className="fixed left-6 top-32.5 z-50">
+                <div id="divBackBtn" className="fixed left-3 top-3 md:left-6 md:top-32.5 z-50">
 
                     <button id="backBtn" className="shadow-xl/30 border-2 border-accent rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                         <Link href="/" onClick={() => WebsiteSoundsystem("/Back.mp3")}><img src="https://i.redd.it/vyu0jqsf7ota1.png" alt="" className=" w-15 h-15 p-2" /></Link>
@@ -133,7 +133,7 @@ export default function PokeLoader() {
 
                 </div>
 
-                <div id="pokemonContainer" className="w-400 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
+                <div id="pokemonContainer" className="w-full max-w-400 justify-center pt-6 md:pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-4 md:p-8">
 
                     {erro && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">{erro}</p>}
                     {!erro && !pokemon && <p className="text-white font-extrabold border-2 border-accent bg-linear-to-b from-white to-sky-400">Loading...</p>}
@@ -148,21 +148,21 @@ export default function PokeLoader() {
                                 className="w-50 h-50 rounded-full bg-linear-to-br from-white/50 to-white/5 overflow-visible shadow-lg justify-center"
                             />
 
-                            <h2 className="capitalize text-5xl font-bold text-primary text-shadow-lg/30 text-shadow-shade pt-6">
+                            <h2 className="capitalize text-3xl md:text-5xl font-bold text-primary text-shadow-lg/30 text-shadow-shade pt-6 wrap-break-word">
                                 {pokemon.name} <span className="opacity-60">#{pokemon.id}</span>
                             </h2>
 
-                            <p className="capitalize text-3xl font-semibold text-accent pt-2">
+                            <p className="capitalize text-xl md:text-3xl font-semibold text-accent pt-2">
                                 {pokemon.types.map((t) => t.type.name).join(" / ")}
                             </p>
 
-                            <p className="normal-case text-2xl text-primary font-semibold pt-4">Pokedex Entry: "{descricao}"</p>
+                            <p className="normal-case text-lg md:text-2xl text-primary font-semibold pt-4">Pokedex Entry: "{descricao}"</p>
 
-                            <p className="text-2xl text-primary font-semibold pt-4">
+                            <p className="text-lg md:text-2xl text-primary font-semibold pt-4">
                                 Height: {pokemon.height / 10} m · Weight: {pokemon.weight / 10} kg
                             </p>
 
-                            <p className="capitalize text-2xl text-primary font-semibold pt-4">
+                            <p className="capitalize text-lg md:text-2xl text-primary font-semibold pt-4">
                                 Abilities:{" "}
                                 {pokemon.abilities
                                     .map((a) => a.ability.name.replace("-", " ") + (a.is_hidden ? " (hidden)" : ""))
@@ -172,17 +172,17 @@ export default function PokeLoader() {
                         </>)}
                     {especie && (
                         <>
-                            <p className="capitalize text-2xl font-semibold text-primary pt-4">
+                            <p className="capitalize text-lg md:text-2xl font-semibold text-primary pt-4">
                                 {especie.gender_rate === -1
                                     ? "Gender: Genderless"
                                     : `Gender: ♂ ${macho}% · ♀ ${femea}%`}
                             </p>
 
-                            <p className="capitalize text-2xl font-semibold text-primary pt-4">
+                            <p className="capitalize text-lg md:text-2xl font-semibold text-primary pt-4">
                                 Habitat: {especie.habitat?.name ?? "unknown"}
                             </p>
 
-                            <p className="capitalize text-2xl font-semibold text-primary pt-4">
+                            <p className="capitalize text-lg md:text-2xl font-semibold text-primary pt-4">
                                 {especie.is_legendary && "Rarity: Legendary"}
                                 {especie.is_mythical && "Rarity: Mythical"}
                             </p>
@@ -193,24 +193,24 @@ export default function PokeLoader() {
                         <>
                             <div className="grid gap-2 pt-6">
                                 {pokemon.stats.map((s) => (
-                                    <div key={s.stat.name} className="flex items-center gap-4">
-                                        <span className="uppercase w-48 text-xl text-primary font-semibold">{s.stat.name.replace("-", " ")}</span>
+                                    <div key={s.stat.name} className="flex items-center gap-2 md:gap-4">
+                                        <span className="uppercase w-32 md:w-48 text-sm md:text-xl text-primary font-semibold">{s.stat.name.replace("-", " ")}</span>
                                         <div className="flex-1 h-4 rounded-full bg-white/20">
                                             <div
                                                 className="h-4 rounded-full bg-accent"
                                                 style={{ width: `${(s.base_stat / 255) * 100}%` }}
                                             />
                                         </div>
-                                        <span className="w-12 text-xl text-primary font-semibold">{s.base_stat}</span>
+                                        <span className="w-9 md:w-12 text-base md:text-xl text-primary font-semibold">{s.base_stat}</span>
                                     </div>
                                 ))}
                             </div>
                         </>
                     )}
 
-                    <div id="buttons" className="flex mt-8">
+                    <div id="buttons" className="flex flex-wrap gap-y-3 mt-8">
                         <button
-                            className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
+                            className="self-end mr-4 text-primary text-xl md:text-3xl p-3 md:p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
                             onClick={() => {
                                 setShiny(!shiny);
                                 WebsiteSoundsystem("/Shiny.mp3");
@@ -223,9 +223,9 @@ export default function PokeLoader() {
                             onClick={() => {
                                 const grito = new Audio(pokemon.cries.latest);
                                 grito.volume = 0.1;
-                                grito.play();
+                                grito.play().catch(() => {});
                             }}
-                            className="self-end mr-4 text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
+                            className="self-end mr-4 text-primary text-xl md:text-3xl p-3 md:p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
                         >
                             🕪 Cry
                         </button>
@@ -235,7 +235,7 @@ export default function PokeLoader() {
                                 alternarSalvo();
                                 WebsiteSoundsystem("/Save.mp3");
                             }}
-                            className="self-end text-primary text-3xl p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
+                            className="self-end text-primary text-xl md:text-3xl p-3 md:p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
                         >
                             {salvo ? "★ Saved" : "☆ Save Pokémon"}
                         </button>
