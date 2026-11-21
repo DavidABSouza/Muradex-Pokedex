@@ -98,7 +98,7 @@ export default function MyPokemon() {
 
                 <main className="w-full max-w-362 p-0 md:p-6 flex flex-col gap-3">
                     {carregado && lista.length === 0 && (
-                        <p className="w-full max-w-250 min-h-20 text-white text-center text-xl md:text-3xl p-4 font-extrabold border-2 border-accent rounded-3xl bg-linear-to-b from-white/50 to-white/15">You haven't saved any Pokémon yet.</p>
+                        <p className="self-center w-full max-w-250 min-h-20 text-white text-center text-xl md:text-3xl p-4 font-extrabold border-2 border-accent rounded-3xl bg-linear-to-b from-white/50 to-white/15">You haven't saved any Pokémon yet.</p>
                     )}
 
                     {lista.map((p) => (
@@ -117,5 +117,5 @@ export default function MyPokemon() {
 
             </div>
         </div>
-    );
+    );  
 }
