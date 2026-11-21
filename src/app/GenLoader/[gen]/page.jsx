@@ -92,7 +92,7 @@ export default function GenLoader() {
 
             <div id="header" className="grid justify-center rounded-b-2xl px-3 pb-5 pt-20 md:pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                 <header>
-                    <h1 className="flex text-center text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" />GENERATION {gen}<img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /></h1>
+                    <h1 className="flex justify-center text-center text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" />GENERATION {gen}<img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /></h1>
                 </header>
             </div>
 

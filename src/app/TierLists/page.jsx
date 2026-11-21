@@ -168,7 +168,7 @@ const naoColocados = salvos.filter((p) => !colocados.has(p.id));
             {Object.entries(THEMES).map(([key, t]) => (
                 <div
                     key={key}
-                    className={`fixed inset-0 -z-10 bg-cover bg-center md:bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+                    className={`fixed inset-0 -z-10 bg-cover bg-center md:bg-size-[100%_auto] md:bg-repeat-y md:bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
 
@@ -190,7 +190,7 @@ const naoColocados = salvos.filter((p) => !colocados.has(p.id));
                         <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_book_2.ico" alt="" className="p-2" />
                     </button>
 
-                    <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-[min(21.25rem,calc(100vw-1.5rem))] max-h-[80vh] overflow-y-auto md:max-h-none md:overflow-visible grid border-2 border-accent rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
+                    <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-[min(21.25rem,calc(100vw-1.5rem))] max-h-[80vh] overflow-y-auto md:max-h-none md:overflow-visible grid border-2 border-accent rounded-xl bg-linear-to-br from-white/90 to-primary/90 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
                         <h1 className="flex text-center text-3xl font-semibold text-accent text-shadow-lg/30 text-shadow-shade gap-4">Tools</h1> <hr className="h-2 rounded bg-accent border-0" />
                         <Link href="/" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Starter Page <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10" /></Link>
                         <Link href="/MyPokemon" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">My Pokémon <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end" /></Link>
@@ -215,16 +215,16 @@ const naoColocados = salvos.filter((p) => !colocados.has(p.id));
                     <button onClick={() => { salvarImagem(); }} className="justify-self-end w-full md:w-50 bg-linear-to-tl from-sky-400 to-white border-2 border-primary rounded-xl text-2xl md:text-3xl text-primary font-bold p-1 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg text-center"><h1 className="grid">Save Image</h1></button>
                 </div>
 
-                <div id="tierListsContainer" className="border-3 border-accent w-full max-w-400 grid pt-8 md:pt-16 transition-all duration-300 ease-in-out md:hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-3 md:p-8">
+                <div id="tierListsContainer" className="border-3 border-accent w-full max-w-400 grid grid-cols-1 pt-8 md:pt-16 transition-all duration-300 ease-in-out md:hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-3 md:p-8">
 
                     <br />
-                    <div id="tierList" ref={areaRef} className="justify-self-center w-full max-w-350 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-3 md:p-10">
+                    <div id="tierList" ref={areaRef} className="justify-self-center w-full min-w-0 max-w-350 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-3 md:p-10">
 
                         {nome.trim() !== "" && (
-                            <h2 className="whitespace-pre-wrap wrap-break-word text-center text-3xl md:text-6xl font-bold text-primary pb-8">{nome}</h2>
+                            <h2 className="whitespace-pre-wrap wrap-anywhere text-center text-3xl md:text-6xl font-bold text-primary pb-8">{nome}</h2>
                         )}
 
-                        <div className="grid gap-3 md:gap-6">
+                        <div className="grid grid-cols-1 gap-3 md:gap-6">
                             {TIERS.map(({ letra, cor }) => (
                                 <div
                                     key={letra}

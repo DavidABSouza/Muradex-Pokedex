@@ -91,33 +91,33 @@ export default function Notes() {
 
     return (
 
-        <div id="body" data-theme={theme} className="relative isolate font-sans">
+        <div id="body" data-theme={theme} className="relative isolate font-sans overflow-x-clip">
             {Object.entries(THEMES).map(([key, t]) => (
                 <div
                     key={key}
-                    className={`fixed inset-0 -z-10 bg-size-[100%_auto] bg-repeat-y bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
+                    className={`fixed inset-0 -z-10 bg-cover bg-center md:bg-size-[100%_auto] md:bg-repeat-y md:bg-top transition-opacity duration-700 ${t.wallpaper} ${theme === key ? "opacity-100" : "opacity-0"}`}
                 />
             ))}
 
-            <div id="header" className="grid justify-center rounded-b-2xl pb-5 pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+            <div id="header" className="grid justify-center rounded-b-2xl px-3 pb-5 pt-20 md:pt-5 shadow-xl/30 bg-linear-to-b from-white/60 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                 <header>
-                    <h1 className="flex text-center text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-10 h-10 justify-self-end self-center" />NOTES <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-10 h-10 justify-self-end self-center" /></h1>
-                    <h1 className="text-center text-primary font-bold text-shadow-lg/30 text-shadow-shade">(Here you can set up quick notes on your pokémon however you wish!)</h1>
+                    <h1 className="flex justify-center text-center text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-primary font-bold text-shadow-lg/30 text-shadow-shade"><img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" />NOTES <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-6 h-6 md:w-10 md:h-10 justify-self-end self-center" /></h1>
+                    <h1 className="text-center text-sm md:text-base text-primary font-bold text-shadow-lg/30 text-shadow-shade">(Here you can set up quick notes on your pokémon however you wish!)</h1>
                 </header>
             </div>
 
-            <div id="mainContent" className="grid justify-center pt-16 pb-10">
+            <div id="mainContent" className="flex flex-col items-center px-3 md:px-6 pt-8 md:pt-16 pb-10">
 
-                <div ref={ref} id="dropdownTools" className="fixed left-6 top-32.5 z-50">
+                <div ref={ref} id="dropdownTools" className="fixed left-3 top-3 md:left-6 md:top-32.5 z-50">
 
                     <button onClick={() => {
                         setOpen((o) => !o)
-                        WebsiteSoundsystem("DropdownClick.mp3")
+                        WebsiteSoundsystem("/DropdownClick.mp3")
                     }} id="dropdownBtn" className="shadow-xl/30 border-2 border-accent rounded-full bg-linear-to-br from-white/50 to-white/0 transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                         <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_book_2.ico" alt="" className="p-2" />
                     </button>
 
-                    <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-85 grid border-2 border-accent rounded-xl bg-linear-to-br from-white/50 to-white/0 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
+                    <div id="dropdownContent" className={`absolute left-0 top-full mt-2 w-[min(21.25rem,calc(100vw-1.5rem))] max-h-[80vh] overflow-y-auto md:max-h-none md:overflow-visible grid border-2 border-accent rounded-xl bg-linear-to-br from-white/90 to-primary/90 p-4 gap-4 origin-top-left transition-all duration-300 ease-in-out ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}>
                         <h1 className="flex text-center text-3xl font-semibold text-accent text-shadow-lg/30 text-shadow-shade gap-4">Tools</h1> <hr className="h-2 rounded bg-accent border-0" />
                         <Link href="/" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Starter Page <img src="https://www.freeiconspng.com/uploads/pokeball-icon-28.png" alt="" className="w-10 h-10" /></Link>
                         <Link href="/MyPokemon" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">My Pokémon <img src="https://www.freeiconspng.com/uploads/pokeball-icon-26.png" alt="" className="w-10 h-10 justify-self-end" /></Link>
@@ -125,25 +125,25 @@ export default function Notes() {
                         <Link href="/Notes" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={() => WebsiteSoundsystem("/Enter.mp3")} className="rounded-xl flex text-start text-3xl font-semibold text-primary text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Notes <img src="https://frutigeraeroarchive.org/images/icons/windows_vista/vista_sticky_notes.ico" alt="" className="w-10 h-10 justify-self-end" /></Link>
                         <br />
                         <h1 className="flex text-center text-3xl font-semibold text-accent text-shadow-lg/30 text-shadow-shade gap-4">Website Styles</h1> <hr className="h-2 rounded bg-accent border-0" />
-                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("aero"); WebsiteSoundsystem("Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-indigo-200 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Aero Scape<img src="https://em-content.zobj.net/source/apple/325/bubbles_1fae7.png" alt="" className="w-10 h-10 justify-self-end" /></a>
-                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("dorfic"); WebsiteSoundsystem("Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-orange-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">DORFic Lounge<img src="https://png.pngtree.com/png-clipart/20250105/original/pngtree-summer-fruit-fresh-orange-half-orange-png-image_6792015.png" alt="" className="w-10 h-10 justify-self-end" /></a>
-                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("jellyfishes"); WebsiteSoundsystem("Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-violet-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Violet Jellyfishes<img src="https://png.pngtree.com/png-clipart/20250513/original/pngtree-vibrant-purple-jellyfish-png-image_20957555.png" alt="" className="w-10 h-10 justify-self-end" /></a>
+                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("aero"); WebsiteSoundsystem("/Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-indigo-200 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Aero Scape<img src="https://em-content.zobj.net/source/apple/325/bubbles_1fae7.png" alt="" className="w-10 h-10 justify-self-end" /></a>
+                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("dorfic"); WebsiteSoundsystem("/Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-orange-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">DORFic Lounge<img src="https://png.pngtree.com/png-clipart/20250105/original/pngtree-summer-fruit-fresh-orange-half-orange-png-image_6792015.png" alt="" className="w-10 h-10 justify-self-end" /></a>
+                        <a href="#" onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} onClick={(e) => { e.preventDefault(); changeTheme("jellyfishes"); WebsiteSoundsystem("/Click2.wav") }} className="rounded-xl flex text-start text-3xl font-semibold text-violet-400 text-shadow-lg/30 text-shadow-shade gap-4 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg">Violet Jellyfishes<img src="https://png.pngtree.com/png-clipart/20250513/original/pngtree-vibrant-purple-jellyfish-png-image_20957555.png" alt="" className="w-10 h-10 justify-self-end" /></a>
                     </div>
                 </div>
 
-                <div id="notesContainer" className="w-275 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
+                <div id="notesContainer" className="w-full max-w-275 justify-center pt-6 md:pt-10 transition-all duration-300 ease-in-out md:hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-4 md:p-8">
 
                     <div id="addNote">
 
-                        <h1 className="pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Write and Save Notes on any Pokémon You want!</h1>
-                        <br />
-                        <form action="" className="grid justify-center border-3 border-accent rounded-3xl p-4">
+                        <h1 className="pb-4 text-center text-2xl md:text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Write and Save Notes on any Pokémon You want!</h1>
+                        <br className="hidden md:block" />
+                        <form action="" onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 justify-items-center border-3 border-accent rounded-3xl p-3 md:p-4">
 
-                            <h1 className="text-center text-2xl text-primary font-bold p-1 pb-4 text-shadow-lg/30 justify-self-start">Select the Pokémon:</h1>
+                            <h1 className="text-center text-xl md:text-2xl text-primary font-bold p-1 pb-4 text-shadow-lg/30 justify-self-start">Select the Pokémon:</h1>
                             <select
                                 value={escolhido}
                                 onChange={(e) => setEscolhido(e.target.value)}
-                                className="capitalize w-200 text-2xl font-semibold text-primary rounded-l-3xl mr-2 outline-hidden border-3 border-primary p-4"
+                                className="capitalize w-full max-w-200 text-lg md:text-2xl font-semibold text-primary rounded-3xl md:rounded-l-3xl md:mr-2 outline-hidden border-3 border-primary p-3 md:p-4"
                             >
                                 <option value="" required className="capitalize text-accent">Select one of your saved Pokémon...</option>
                                 {salvos.map((s) => (
@@ -153,36 +153,36 @@ export default function Notes() {
                                 ))}
                             </select>
                             {carregado && salvos.length === 0 && (
-                                <p className="text-center text-2xl text-white font-bold p-1 pb-4 text-shadow-lg/30 justify-self-center">
+                                <p className="text-center text-lg md:text-2xl text-white font-bold p-1 pb-4 text-shadow-lg/30 justify-self-center">
                                     You have no saved Pokémon yet.{" "}
                                     <Link href="/" className="underline">Search for one</Link> and save it first!
                                 </p>
                             )}
 
-                            <br /><br /><br />
-                            <h1 className="text-center text-2xl text-primary font-bold p-1 pb-4 text-shadow-lg/30 justify-self-start" required>Add the Text You want:</h1>
-                            <textarea value={texto} onChange={(e) => setTexto(e.target.value)} id="digite-efeito" placeholder="Talk about it..! C'mon!!" required className="w-200 h-50 text-2xl font-semibold text-primary ronded-xl mr-2  outline-hidden border-3 border-primary rounded-3xl p-4"></textarea>
+                            <br className="hidden md:block" /><br className="hidden md:block" /><br className="hidden md:block" />
+                            <h1 className="text-center text-xl md:text-2xl text-primary font-bold p-1 pb-4 pt-6 md:pt-1 text-shadow-lg/30 justify-self-start" required>Add the Text You want:</h1>
+                            <textarea value={texto} onChange={(e) => setTexto(e.target.value)} id="digite-efeito" placeholder="Talk about it..! C'mon!!" required className="w-full max-w-200 h-40 md:h-50 text-lg md:text-2xl font-semibold text-primary ronded-xl md:mr-2 outline-hidden border-3 border-primary rounded-3xl p-3 md:p-4"></textarea>
 
-                            <br /><br /><br />
-                            <button onClick={() => { adicionar(); }} type="button" id="adicionar" className="w-100 w-bg-linear-to-tl from-sky-400 to-white border-2 border-primary rounded-xl text-3xl text-primary font-bold p-1 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg justify-self-center">Add Note!</button>
+                            <br className="hidden md:block" /><br className="hidden md:block" /><br className="hidden md:block" />
+                            <button onClick={() => { adicionar(); }} type="button" id="adicionar" className="w-full max-w-100 mt-6 md:mt-0 w-bg-linear-to-tl from-sky-400 to-white border-2 border-primary rounded-xl text-2xl md:text-3xl text-primary font-bold p-1 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg shadow-xl/30 text-shadow-lg justify-self-center">Add Note!</button>
                         </form>
 
                     </div>
                 </div>
-                <br /><br /><br />
-                <div id="createdNotes" className="w-275 justify-center pt-10 transition-all duration-300 ease-in-out hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-8">
-                    <h1 className="pb-4 text-center text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Created Notes: </h1>
+                <br className="hidden md:block" /><br className="hidden md:block" /><br className="hidden md:block" />
+                <div id="createdNotes" className="w-full max-w-275 mt-6 md:mt-0 justify-center pt-6 md:pt-10 transition-all duration-300 ease-in-out md:hover:scale-102 shadow-xl/30 bg-linear-to-br from-white/50 to-white/5 rounded-3xl bg-blend-soft-light p-4 md:p-8">
+                    <h1 className="pb-4 text-center text-2xl md:text-4xl text-primary text-shadow-lg/30 text-shadow-shade font-semibold">Created Notes: </h1>
                     {notas.map((n) => (
-                        <div key={n.id} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="flex gap-4 rounded-xl p-4 bg-white/10">
-                            <Link onClick={() => WebsiteSoundsystem("/Enter.mp3")} href={`/PokeLoader/${n.pokemonId}`}>
-                                <img src={n.imagem} alt={n.pokemon} className="w-20 h-20 object-contain shrink-0" />
+                        <div key={n.id} onMouseEnter={() => WebsiteSoundsystem("/Hover.mp3")} className="flex gap-3 md:gap-4 rounded-xl p-3 md:p-4 bg-white/10">
+                            <Link onClick={() => WebsiteSoundsystem("/Enter.mp3")} href={`/PokeLoader/${n.pokemonId}`} className="shrink-0">
+                                <img src={n.imagem} alt={n.pokemon} className="w-14 h-14 md:w-20 md:h-20 object-contain shrink-0" />
                             </Link>
                             <div className="flex-1 min-w-0">
-                                <div className="flex justify-between items-center gap-4">
-                                    <h3 className="capitalize text-4xl font-semibold text-primary">{n.pokemon}</h3>
-                                    <button className="text-primary font-semibold cursor-pointer" onClick={() => { apagar(n.id); WebsiteSoundsystem("Remove.mp3") }}>Delete</button>
+                                <div className="flex justify-between items-center gap-3 md:gap-4">
+                                    <h3 className="capitalize min-w-0 wrap-anywhere text-2xl md:text-4xl font-semibold text-primary">{n.pokemon}</h3>
+                                    <button className="shrink-0 text-primary font-semibold cursor-pointer" onClick={() => { apagar(n.id); WebsiteSoundsystem("/Remove.mp3") }}>Delete</button>
                                 </div>
-                                <p className="whitespace-pre-wrap wrap-break-word pt-2 text-accent text-2xl">{n.texto}</p>
+                                <p className="whitespace-pre-wrap wrap-anywhere pt-2 text-accent text-lg md:text-2xl">{n.texto}</p>
                                 <p className="text-sm opacity-60 pt-2 text-shade">{n.data}</p>
                             </div>
                         </div>
