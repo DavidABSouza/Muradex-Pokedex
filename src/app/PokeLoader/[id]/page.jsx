@@ -227,7 +227,7 @@ export default function PokeLoader() {
                             }}
                             className="self-end mr-4 text-primary text-xl md:text-3xl p-3 md:p-4 rounded-3xl font-extrabold border-2 border-accent bg-linear-to-b from-white/70 to-white/10"
                         >
-                            🕪 Cry
+                            ♫ Cry
                         </button>
 
                         <button
